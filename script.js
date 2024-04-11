@@ -5,7 +5,7 @@ const btnloadSecondImages = document.getElementById("loadSecondImages");
 
 //funzione per il caricamento delle immagini
 const funcForImage = (URL) => {
-//   console.log(e.target); //bottone blu load image
+  //   console.log(e.target); //bottone blu load image
   fetch(URL, {
     method: "GET",
     body: JSON.stringify(),
@@ -30,7 +30,7 @@ const funcForImage = (URL) => {
         const title = obj.photographer;
         const description = obj.alt;
         const id = obj.id;
-        console.log(obj);
+        // console.log(obj);
         const div = document.createElement("div");
         div.classList.add("col-md-4");
         div.innerHTML = ` <div class="card mb-4 shadow-sm">
@@ -55,7 +55,8 @@ const funcForImage = (URL) => {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-sm btn-outline-secondary"
+                  id="btnHide"
+                  class="btn  btn-sm  btn-outline-secondary"
                 >
                   Hide
                 </button>
@@ -66,14 +67,26 @@ const funcForImage = (URL) => {
         </div>`;
         row.appendChild(div);
       });
+    })
+    .then(() => {
+      //tasto hide
+      const btnHide = document.querySelectorAll("#btnHide");
+      console.log(btnHide);
+      btnHide.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const card = e.target.parentNode.parentNode.parentNode.parentNode;
+          card.remove();
+        });
+      });
     });
 };
-const loadImage = () => {
+
+//gestendo bottoni
+window.onload = () => {
   btnLoadImages.addEventListener("click", (URL) => {
-    funcForImage("https://api.pexels.com/v1/search?query=animal")
+    funcForImage("https://api.pexels.com/v1/search?query=animal");
   });
   btnloadSecondImages.addEventListener("click", (URL) => {
-    funcForImage("https://api.pexels.com/v1/search?query=car")
+    funcForImage("https://api.pexels.com/v1/search?query=car");
   });
 };
-loadImage();
