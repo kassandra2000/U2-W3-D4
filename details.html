@@ -134,19 +134,7 @@
     </header>
     <main>
       <div class="container container3" style="max-width: 900px">
-        <div class="row mt-5 d-flex align-items-center">
-          <div class="col">
-            <img
-              src="https://images.pexels.com/photos/47547/squirrel-animal-cute-rodents-47547.jpeg?auto=compress&cs=tinysrgb&h=130"
-              alt=""
-              width="300px"
-              style="object-fit: cover"
-            />
-          </div>
-          <div class="col fs-3  ">nome artista</div>
-          <div class="col fs-3 "><a href="#">My page</a></div>
-          <div class="col fs-3 "><button>Return</button></div>
-        </div>
+        <div id="row" class="row mt-5 row-cols-1 align-items-center"></div>
       </div>
     </main>
     <footer class="text-muted">
@@ -161,6 +149,41 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script src="script.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search); //crea ogg
+      const id = params.get("id");
+      console.log(id);
+      window.onload = () => {
+        fetch("https://api.pexels.com/v1/photos/" + id, {
+          method: "GET",
+         
+          headers: {
+           
+            Authorization:
+              "PEvDd8ZITfGARBaUC6i181BDkU3FUcAAC1LkNUnGuhCmPFHlpgizWYtU",
+          }, //chiave
+        })
+          .then((response) => response.json())
+          .then((photo) => {
+            console.log("ciao")
+            const row = document.getElementById("row");
+            row.innerHTML = ` <div class="col">
+            <img
+              src=${photo.src.large}
+              alt=""
+              width="300px"
+              style="object-fit: cover"
+            />
+          </div>
+          <div class="col fs-3">${photo.photographer}</div>
+          <div class="col fs-3"><a href=${photo.photographer_url}>My page</a></div>
+          <div class="col fs-3"><a class=" btn btn-primary" href= "index.html">Return</a></div> 
+`;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+    </script>
   </body>
 </html>

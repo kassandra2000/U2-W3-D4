@@ -6,13 +6,22 @@ const inputSearch = document.querySelector(".search");
 const buttonSearch = document.querySelector(".searchBtn");
 
 //funzione per il caricamento delle immagini
+const removeCard = (e) => {
+  const card = e.target.parentNode.parentNode.parentNode.parentNode;
+  card.remove();
+};
+
+const goToDetails = (id) => {
+  console.log("ciao");
+  window.location.assign("./details.html?id=" + id);
+};
 const funcForImage = (URL) => {
   //   console.log(e.target); //bottone blu load image
   fetch(URL, {
     method: "GET",
-    body: JSON.stringify(),
+    // body: JSON.stringify(),//serve solo post e put
     headers: {
-      "Content-Type": "application/json",
+    //   "Content-Type": "application/json",//quando invio body
       Authorization: "PEvDd8ZITfGARBaUC6i181BDkU3FUcAAC1LkNUnGuhCmPFHlpgizWYtU",
     }, //chiave
   })
@@ -51,15 +60,15 @@ const funcForImage = (URL) => {
               <div class="btn-group">
                 <button
                   type="button"
-                  id="#btnView "
-                  class="btn btn-sm btn-outline-secondary"
+                  onclick="goToDetails(${id})"
+                  class="btn btn-sm btnView btn-outline-secondary"
                 >
                   View
                 </button>
                 <button
                   type="button"
-                  id="btnHide"
-                  class="btn  btn-sm  btn-outline-secondary"
+                  onclick="removeCard(event)"
+                  class="btn btnHide btn-sm  btn-outline-secondary"
                 >
                   Hide
                 </button>
@@ -69,27 +78,6 @@ const funcForImage = (URL) => {
           </div>
         </div>`;
         row.appendChild(div);
-      });
-    })
-    .then(() => {
-      //tasto hide
-      const btnHide = document.querySelectorAll("#btnHide");
-      console.log(btnHide);
-      btnHide.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          const card = e.target.parentNode.parentNode.parentNode.parentNode;
-          card.remove();
-        });
-      });
-    })
-    .then(() => {
-      //tasto view
-      const btnView = document.querySelectorAll("#btnView");
-      console.log(btnView);
-      btnView.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          window.location.assign("details.html");
-        });
       });
     });
 };
