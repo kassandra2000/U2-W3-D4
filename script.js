@@ -2,6 +2,8 @@
 const row = document.getElementById("row");
 const btnLoadImages = document.getElementById("loadImages");
 const btnloadSecondImages = document.getElementById("loadSecondImages");
+const inputSearch = document.querySelector(".search");
+const buttonSearch = document.querySelector(".searchBtn");
 
 //funzione per il caricamento delle immagini
 const funcForImage = (URL) => {
@@ -49,6 +51,7 @@ const funcForImage = (URL) => {
               <div class="btn-group">
                 <button
                   type="button"
+                  id="#btnView "
                   class="btn btn-sm btn-outline-secondary"
                 >
                   View
@@ -78,6 +81,16 @@ const funcForImage = (URL) => {
           card.remove();
         });
       });
+    })
+    .then(() => {
+      //tasto view
+      const btnView = document.querySelectorAll("#btnView");
+      console.log(btnView);
+      btnView.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          window.location.assign("details.html");
+        });
+      });
     });
 };
 
@@ -88,5 +101,9 @@ window.onload = () => {
   });
   btnloadSecondImages.addEventListener("click", (URL) => {
     funcForImage("https://api.pexels.com/v1/search?query=car");
+  });
+  buttonSearch.addEventListener("click", () => {
+    console.log(inputSearch.value);
+    funcForImage(`https://api.pexels.com/v1/search?query=${inputSearch.value}`);
   });
 };

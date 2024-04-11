@@ -69,6 +69,12 @@
           font-size: 3.5rem;
         }
       }
+
+      row {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
@@ -126,65 +132,20 @@
         </div>
       </nav>
     </header>
-    <main role="main">
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Album API example</h1>
-          <p class="lead text-muted">
-            This page will dynamically load pictures from the web, and display
-            them in a cool way!
-          </p>
-          <p>
-            <a id="loadImages" href="#" class="btn btn-primary my-2"
-              >Load Images</a
-            >
-            <a id="loadSecondImages" href="#" class="btn btn-secondary my-2"
-              >Load Secondary Images</a
-            >
-          </p>
-          <input class="w-75 search" type="text" placeholder="ricerca qui..." />
-          <button class="searchBtn">Cerca</button>
-        </div>
-      </section>
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div id="row" class="row">
-            <!-- <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img
-                  src="https://picsum.photos/id/237/300/200"
-                  class="bd-placeholder-img card-img-top"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Lorem Ipsum</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </p>
-                  <div
-                    class="d-flex justify-content-between align-items-center"
-                  >
-                    <div class="btn-group">
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        View
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-sm btn-outline-secondary"
-                      >
-                        Hide
-                      </button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div> -->
+    <main>
+      <div class="container container3" style="max-width: 900px">
+        <div class="row mt-5 d-flex align-items-center">
+          <div class="col">
+            <img
+              src="https://images.pexels.com/photos/47547/squirrel-animal-cute-rodents-47547.jpeg?auto=compress&cs=tinysrgb&h=130"
+              alt=""
+              width="300px"
+              style="object-fit: cover"
+            />
           </div>
+          <div class="col fs-3  ">nome artista</div>
+          <div class="col fs-3 "><a href="#">My page</a></div>
+          <div class="col fs-3 "><button>Return</button></div>
         </div>
       </div>
     </main>
